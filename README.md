@@ -111,48 +111,9 @@ cd ml-project-blueprint
 conda env create -f environment.yml
 conda activate ml-blueprint
 
-#----- issue while running Jupyter notebook locally --- CHATGPT fix---
-    # 1. Check what kernels Jupyter thinks are running
 
-    # In a terminal:
-
-    jupyter server list
-
-
-    # If there’s more than one server running and you’re connecting to an old one, kill all of them and start a single clean one.
-
-    # In the browser (JupyterLab):
-    # File → Shut Down → shut down all kernels and terminals.
-
-    # 2. Make sure your environment isn’t half-broken
-
-    # You’re running Python 3.14 according to that path:
-
-    # .../Python.framework/Versions/3.14/lib/python3.14/...
-
-
-    # That’s bleeding-edge. Some Jupyter stack pieces may be buggy or not fully tested against it.
-
-    # If weirdness persists:
-
-    # Create a clean venv with a mainstream Python (3.11 or 3.12).
-
-    Install Jupyter there:
-
-    python -m venv .venv
-    source .venv/bin/activate  # Windows: .venv\Scripts\activate
-    pip install --upgrade pip
-    pip install jupyterlab ipykernel
-    python -m ipykernel install --user --name clean-env --display-name "Python (clean-env)"
-    jupyter lab
-
-
-    # In the UI, pick the Python (clean-env) kernel.
-
-    # If the error disappears in the clean env, your old environment is just messy.
-# Chatgpt fix-------
 # Train the model first (if not already trained)
-python app-ml/entrypoint/rain.py
+python app-ml/entrypoint/train.py
 
 # Run inference in a loop 
 python app-ml/entrypoint/inference.py
@@ -236,3 +197,46 @@ You are **not allowed to**:
 For any use beyond personal or educational purposes, please contact the author for written permission.
 
 </div> 
+
+
+
+#----- issue while running Jupyter notebook locally ---
+    # 1. Check what kernels Jupyter thinks are running
+
+    # In a terminal:
+
+    jupyter server list
+
+
+    # If there’s more than one server running and you’re connecting to an old one, kill all of them and start a single clean       one.
+
+    # In the browser (JupyterLab):
+    # File → Shut Down → shut down all kernels and terminals.
+
+    # 2. Make sure your environment isn’t half-broken
+
+    # You’re running Python 3.14 according to that path:
+
+    # .../Python.framework/Versions/3.14/lib/python3.14/...
+
+
+    # That’s bleeding-edge. Some Jupyter stack pieces may be buggy or not fully tested against it.
+
+    # If weirdness persists:
+
+    # Create a clean venv with a mainstream Python (3.11 or 3.12).
+
+    Install Jupyter there:
+
+    python -m venv .venv
+    source .venv/bin/activate  # Windows: .venv\Scripts\activate
+    pip install --upgrade pip
+    pip install jupyterlab ipykernel
+    python -m ipykernel install --user --name clean-env --display-name "Python (clean-env)"
+    jupyter lab
+
+
+    # In the UI, pick the Python (clean-env) kernel.
+
+    # If the error disappears in the clean env, your old environment is just messy.
+# --- fix-------
